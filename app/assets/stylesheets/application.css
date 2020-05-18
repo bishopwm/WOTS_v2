@@ -1,0 +1,501 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ 
+ *= require_tree .
+ *= require_self
+ */
+
+
+* {
+	font-family: 'Cabin', sans-serif;
+	font-size: 16px;
+
+}
+
+.progress-bar.animate {
+   width: 100%;
+}
+
+
+.avatar {
+	width: 10%;
+	border-radius: 8px;
+	margin-left: 6px;
+}
+
+.modal-content {
+	height: 230px;
+	width: 500px;
+	margin-top: 5px;
+	margin: 200px auto;	
+	text-align: center;
+	color: maroon;
+
+}
+
+#ourmodal-content {
+	height: 400px;
+	width: 500px;
+	text-align: left;
+	color: black;
+}
+
+#facebook-button {
+	margin-top: 20px;
+	height: 80px;
+	width: 100%;
+	font-family: 'Titillium Web', sans-serif;
+	background-color: #4c66a4;
+	color: white;
+	font-size: 20px;
+	border-radius: 8px;
+	letter-spacing: 3px;
+}
+
+#facebook-button:hover {
+	border: 4px solid #889bc8;
+}
+
+.facebookf-logo {
+	width: 4%;
+	margin-right: 40px;
+}
+
+#twitter-button {
+	margin-top: 20px;
+	height: 80px;
+	width: 100%;
+	background-color: #55acee;
+	color: white;
+	font-size: 20px;
+	border-radius: 8px;
+	letter-spacing: 3px;
+}
+
+.twitter-logo {
+	width: 2.5%;
+	margin-right: 60px;
+}
+
+#instagram-button {
+	margin-top: 20px;
+	width: 100%;
+	height: 80px;
+	/*font-family: 'Titillium Web', sans-serif;*/
+	background-color: #bea9a2;
+	color: white;
+	font-size: 20px;
+	border-radius: 8px;
+	letter-spacing: 3px;
+}
+
+.instagram-logo {
+	width: 6%;
+	margin-right: 40px;
+}
+
+.modal-title {
+	color: black;
+}
+
+#ourmodal-content {
+	color: #4c66a4;
+	font-weight: bold;
+}
+
+.modal-city-info {
+	margin-top: 80px;
+}
+
+#map { 
+	height: 400px;
+	margin-bottom: 35px; 
+
+
+ }
+
+ .homepage-blurb {
+ 	font-size: 32px; 
+ 	word-spacing: 10px;
+ 	color: #116890;
+
+ }
+
+ .blurb-span {
+ 	font-size: 32px;
+ 	word-spacing: 10px;
+ 	color: #09384e;
+ 	font-weight: bold;
+ }
+
+ #main-search .main-search-form .form-group{
+/* 	margin-left: 120px;*/
+	height: 40px;
+	width: 100%;
+	margin: 10px auto;
+ }
+
+
+ #city-button {
+
+	width: 100%;
+	margin: 10px auto;
+/* 	margin-left: 122px;
+*/ 	font-size: 18px;
+ 	height: 54px;
+ 	font-family: 'Cabin', sans-serif;
+	color: #116890;
+	letter-spacing: 2px;
+ }
+
+ #city-button:hover {
+ 	background-color: #ababab;
+ }
+
+ #address-search {
+ 	margin-left: 120px;
+ 	margin-top: 5px;
+ }
+
+ .btn.community {
+ 	background-color: maroon;
+	/*border: 1px solid #570a12;*/
+	color: white;
+	border-radius: 15px;
+	height: 30px;
+	width: 62px;
+	font-size: 12px;
+
+
+ }
+
+ .btn.community:hover {
+ 	background-color: #32060a;
+ }
+
+.fb-events-list {
+	list-style-type: none;
+}
+
+
+.well.the-search-mid {
+	margin-top: 0;
+	width:100%;
+	height: 180px;
+}
+
+.why-section {
+	text-align: center;
+	/*color: white;*/
+	font-family: 'Cabin', sans-serif;
+ 	color: #116890;
+
+}
+
+.what-is-it-blurb {
+	color: black;
+}
+
+.why-footnote {
+	margin-top: 200px;
+	text-align: center;
+	font-family: 'Cabin', sans-serif;
+}
+
+.logo-list {
+	list-style-type: none;
+}
+
+.logo-list-item {
+	display: inline;
+	margin-right: 50px;
+}
+
+.mymodal.facebook {
+	margin-top: 350px;
+}
+
+.mymodal.twitter {
+	margin-top: 350px;
+
+}
+
+#twittermodal-content {
+	height: 100%;
+	color: #55acee;
+	font-weight: bold;
+}
+
+#insta-content {
+	height: 100%;
+	margin-top: 50px;
+}
+
+.tweets-list {
+	overflow: auto;
+	width: 100%;
+	height: 300px;
+}
+.facebook-events {
+	overflow: auto;
+	width: 100%;
+	height:300px;
+}
+
+
+.insta-pic {
+	width: 95%;
+	border-radius: 5px;
+}
+
+
+.insta-gallery-list {
+	padding: 0 0 0 0;
+	margin: 15px 0 0 0;
+}
+
+.insta-gallery-list-item {
+	list-style-type: none;
+	margin-bottom: 25px;
+
+}
+
+.insta-gallery-list-item .insta-pic {
+	cursor: pointer;
+}
+
+
+
+
+.twitter-list-item {
+	list-style-type: none;
+	width: 100%;
+	font-size: 12px;
+	text-align: left;
+}
+
+
+.hero-unit {
+	margin-top: -120px;
+	margin-bottom: 1em;
+	width: 100%;
+	height: 800px;
+	background-image: url("/assets/britishstreet.jpg");
+	background-size: auto 135%;
+	background-repeat: no-repeat;
+	z-index: -1;
+	font-family: 'Cabin', sans-serif;
+	text-align: center;
+	float: left;
+	color: white;
+	
+}
+
+.btn.main {
+	margin-top: 10px;
+	background-color: #116890;
+	opacity: 0.8;
+	border: none;
+	color: white;
+}
+
+.hero-text {
+	margin-top: 200px;
+	/*margin-left: 20px;*/
+	font-size: 100px;
+	text-align: center;
+}
+
+#the-search-mid {
+	/*margin-left: 120px;*/
+	height: 54px;
+	width: 1200px;
+	margin: 10px auto;
+}
+
+.directions {
+	letter-spacing: 2px;
+}
+
+#edition-text {
+	font-family: 'Yellowtail', cursive;
+	font-size: 85px;
+	color: rgba(234, 159, 159, 1);
+	font-weight: bold;
+}
+
+#submit {
+	/*margin-left: 120px;*/
+	width: 100%;
+	font-size: 18px;
+	color: white;
+	font-family: 'Cabin', sans-serif;
+	letter-spacing: 2px;
+}
+
+#submit:hover {
+	background-color: #0c4864;
+
+}
+
+.hero-hugs {
+	padding-top: 200px;
+	margin-top: 180px;
+/*	margin-left:385px;*/
+	font-family: 'Cabin', sans-serif;
+	text-align: center;
+	float: left;
+	color: white;
+	/*background-color: rgba(8, 41, 68, 0.49); */
+	margin-right: auto;
+
+}
+
+.instapopup {
+	width: 100%;
+}
+
+
+
+.hero-hugs-child {
+	padding: 10px;
+/*	color: white;
+	background-color: rgba(8, 41, 68, 0.49); */
+	width: 600px;
+	border-radius: 10px;
+}
+
+.sign-up {
+	margin-left: 80px;
+	margin-bottom: 200px;
+	text-align: center;
+}
+
+.log-in {
+	margin-left: 80px;
+	margin-bottom: 200px;
+	text-align: center;
+}
+
+.forgot {
+	margin-left: 80px;
+	margin-bottom: 200px;
+	text-align: center;
+}
+
+.actions {
+	margin-top: 12px;
+	margin-bottom: 10px;
+}
+
+.footer {
+	text-align: center;
+	padding: 4px;
+	padding-top: 7px;
+	width: 100%;
+	z-index: 1;
+	margin-bottom: -10px;
+	background-color: white;
+}
+.nav-bar {
+	width: 100%;
+	height: 30px;
+	list-style-type: none;
+	padding-top: 1em;
+	padding-bottom: 3em;
+	margin-top: 6px;
+	z-index: 1; 
+	font-family: 'Cabin', sans-serif;
+	opacity: 0.8;
+	border-radius: 20px;
+	background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+}
+
+.list-item {
+	margin-right: 3em;
+	display: inline;
+}
+
+.my_profile {
+	width: 450px;
+	height: 150px;
+	margin: 5px auto;
+	margin-bottom: 20px;
+	opacity: 0.8;
+	border-radius: 40px;
+	text-align: center;
+}
+
+.my_community_well {
+	width: 900px;
+	height: 450px;
+	overflow: auto;
+	margin: 5px auto;
+	margin-bottom: 20px;
+
+	opacity: 0.8;
+	border-radius: 40px;
+}
+
+.my-comm {
+	text-align: center;
+	margin-left: 80px;
+	font-family: 'Cabin', sans-serif;
+
+}
+
+.streetwords-list {
+	margin-left: -40px;
+}
+
+
+.first-panel {
+	margin-right: 20px;
+}
+.second-panel {
+	margin-right: 20px;
+}
+
+.bounce {
+  position:fixed;
+  left:50%;
+  bottom:0;
+  margin-top:-25px;
+  margin-left:-40px;
+  height:80px;
+  width:80px;
+  -webkit-animation:bounce 1s infinite;
+}
+
+@-webkit-keyframes bounce {
+  0%       { bottom:5px; }
+  25%, 75% { bottom:15px; }
+  50%      { bottom:20px; }
+  100%     {bottom:0;}
+}
+
+@media (max-width: 770px) {
+  .avatar {
+    display: none;
+  }
+}
+
+@import "leaflet-sprockets";
+@import "leaflet";
+
+
+

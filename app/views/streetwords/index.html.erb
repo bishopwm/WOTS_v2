@@ -1,0 +1,112 @@
+<link href='https://fonts.googleapis.com/css?family=Cabin:400,600' rel='stylesheet' type='text/css'>
+
+<div class="well my_profile">
+	<% if  current_user[:name].nil? %>
+		<h2>Hey, there! Welcome Back.</h2>
+	<% else %>
+		<h2>Hey, 
+			<%= current_user[:name] %>!
+		</h2>
+	<% end %>
+	<p>
+		<%= current_user[:email] %>
+	</p>
+
+	
+</div>
+<div class="well my_community_well">
+<div class="container my_comm">
+<h2>My Community</h2>
+	<%= link_to 'Back to Results', url_for(:back) %>
+	<ul class="streetwords-list" style="margin-top: 15px;">
+		<% @streetwords.each do |streetword| %>
+			<li class="streetwords-list-item"><strong>Name: </strong>
+				<%= streetword.name %>
+			</li><br />
+			<li class="streetwords-list-item"><strong>Address: </strong>
+				<%= streetword.address.to_s.gsub!(/\W/,' ') %>
+			</li><br />
+			<li class="streetwords-list-item"><strong>Search Tag: </strong>
+				<%= streetword.search_term %>
+			</li><br />
+			<% if current_user %>
+  			 <%= link_to "Delete", streetword_path(streetword), :method => :delete, type: "button", class: "btn community" %>
+			<%end%>
+			<br />
+			<br />
+		<% end %>
+	</ul>
+	<%= link_to 'Back', url_for(:back) %>
+	
+</div>
+</div>
+<div id="map"></div>
+
+<style>
+	#map { height: 600px; width: 90%; margin: 0 auto;}
+	.streetwords-list-item { 
+		display: inline;
+		list-style-type: none;
+	}
+</style>
+
+<script type="text/javascript">
+
+	$(function () {
+		var latitude = window.localStorage.getItem("latitude");
+		var longitude = window.localStorage.getItem("longitude");
+
+		var map = L.map('map').setView([latitude, longitude], 14);
+
+		var currentLocation = [latitude, longitude];
+
+
+		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={access_token}', {
+		    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+		    maxZoom: 18,
+		    id: "<%= ENV['mapboxx_id'] %>",
+		    access_token: "<%= ENV['mapbox_access_token'] %>"
+		}).addTo(map);	
+
+		map.scrollWheelZoom.disable();
+
+
+		var communityIcon = L.icon({
+			iconUrl: '/assets/community.png',
+			iconSize: [45, 45],
+		    iconAnchor: [22, 64],
+		    popupAnchor: [-3, -76]			
+		})
+
+		var currentLocationIcon = L.icon({
+			iconUrl: '/assets/star.png',
+			iconSize: [45, 45],
+		    iconAnchor: [22, 64],
+		    popupAnchor: [-3, -76]
+
+		})
+
+		var currentLocationMarker = L.marker(currentLocation, {icon: currentLocationIcon}).addTo(map);
+		var currentLocationContent = '<h4>You are here</h4>'
+		currentLocationMarker.bindPopup(currentLocationContent);
+
+
+
+		var communityMarkers = {}
+		var communityPopupContents = {}
+
+		<% @streetwords.each_with_index do |streetword, index| %>
+				communityPopupContents["popup" + <%= index %>] = "<h3><%= escape_javascript streetword.name %></h3><p><strong>Address: <br /></strong><%=escape_javascript streetword.address %></p>"
+
+			communityMarkers["marker" + <%= index %>] = L.marker([<%= streetword.latitude %>, <%= streetword.longitude %>], {icon: communityIcon}).bindPopup(communityPopupContents['popup' + <%= index %>]).addTo(map);
+		
+		<% end %>
+
+
+
+
+
+
+	})
+
+</script>

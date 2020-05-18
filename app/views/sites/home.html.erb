@@ -1,0 +1,157 @@
+<link href='https://fonts.googleapis.com/css?family=Cabin:400,600' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Yellowtail' rel='stylesheet' type='text/css'>
+<!-- <div class="whirl"> -->
+
+	<div class="hero-unit">
+			  <p class="hero-text">
+				The Word On The Street
+				<p id="edition-text"></p>
+				<h3 class="directions">Enter keyword to search your current neighborhood, or leave blank for all results<h3/>
+			  		<form action="/map" class="main-search-form">
+					  <div class="form-group col-lg-12">
+					    <input type="text" class="form-control" name="q" id="main-search" placeholder="Enter Nationality">
+					   <!--  <input type="string" class="form-control" name="add" id="address-search" placeholder="Enter City or Address"> -->
+					  </div>
+					    <input type="hidden" class="form-control" name="latitude" id="lat">
+					    <input type="hidden" class="form-control" name="longitude" id="lon">
+
+					  <button type="submit" class="btn col-lg-10 main btn-default" id="submit" disabled="disabled"></button>
+					  	<div class="modal js-loading-bar">
+						 <div class="modal-dialog">
+						   <div class="modal-content" style="height: 60px;">
+						     <div class="modal-body">
+						       <div class="progress progress-bar-striped-active">
+						        <div class="progress-bar">
+						        </div>
+						       </div>
+						     </div>
+						   </div>
+						 </div>
+						</div>
+					  <button type="button" class="btn col-lg-10 btn-default" id="city-button" style="font-weight: bold;">Search Alternate City</button>
+					</form>
+		  	</p>
+	</div>
+
+
+<div class="progress">
+  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+    <span class="sr-only">45% Complete</span>
+  </div>
+</div>
+
+	<div class="mymodal modal fade" tabindex="-1">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">CLOSE</span></button>
+		        <h3 class="modal-title">Enter City Name or Zipcode</h3>
+		      </div>
+		      <div class="modal-body1">  
+		        	<!-- <form class="city-form"> -->
+		        		<div class="form-group col-sm-8">
+						 <!--    <input type="text" class="form-control" name="city" id="city-search" placeholder="Enter City or Zipcode"> -->
+						     <textarea id="txtAddress" rows="3" class="form-control" cols="25"></textarea>
+   								 <br />
+    						<input type="button" onclick="GetLocation(); $('#results').append('<h3><strong>Location set to:</strong> ' + $(txtAddress).val() + '</h3>'); $('#edition-text').append($(txtAddress).val().toUpperCase()); var myModal = $('.mymodal');clearTimeout(myModal.data('hideInterval'));myModal.data('hideInterval', setTimeout(function(){myModal.modal('hide');}, 1000));" value="Set Location" class="set-new-location form-control" />
+
+						   <!-- <button type="submit" class="btn col-sm-10 btn-default" id="city-sub-button">Submit</button> -->
+						</div>
+					<!-- </form> -->
+		    </div>
+		    <div class="modal-city-info">
+		    	<div id="results"></div>
+		    </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div>
+	</div>
+
+	<div class="container why-section">
+	<h1>What's the Word on the Street<br />...and why do I care?</h1>
+	<h3 class="what-is-it-blurb">Word on the Street receives a user's geolocation in order to map out all of the 'happenings' in their international community! It's all about accessibility. Get the 'gist' of whatever is going on in your neighborhood or city at a moment's notice: Tweets, Instagrams, Meetups, Facebook Events, local businesses and restaurants.</h3>
+	<hr />
+	<p class="homepage-blurb">The <span class="blurb-span">world</span> in your <span class="blurb-span">neighborhood.</span></p><br />
+	<ul class="logo-list">
+		<li class="logo-list-item"><img src="/assets/square-yelp.png" width="50px"></li>
+		<li class="logo-list-item"><img src="/assets/square-meetup.png" width="50px"></li>
+		<li class="logo-list-item"><img src="/assets/insta.png" width="70px"></li>
+		<li class="logo-list-item"><img src="/assets/twitter.png" width="50px"></li>
+	</ul>
+<!-- </div> -->
+<hr />
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+$(function () {
+	if ("geolocation" in navigator) {
+	  getLocation();
+	} else {
+	  alert("Geolocation is not available")
+	};
+});
+
+if($('#submit').attr('disabled') == 'disabled'){
+    $('#submit').append('<h4>Retrieving Current Location...</h4>');
+}else{
+    $('#submit').append('<h4>Submit</h4>');
+}
+
+
+$('#city-button').on('click', function(event){
+	event.preventDefault();
+	$('.mymodal').modal();
+});
+
+// $('.city-form').on('submit', function(event){
+// 	event.preventDefault();
+// 	$('.display-city-paragraph').empty();
+// 	var targetCity = $(this).serialize()
+// 	console.log('Setting city to...' + targetCity);
+// 	window.localStorage.setItem('city-zip', $( this ).serialize());
+// 	$('#results').append('<h3>'+ window.localStorage.getItem("city-zip") + '</h3>');
+// });
+
+
+function GetLocation() {
+    var geocoder = new google.maps.Geocoder();
+    var address = document.getElementById("txtAddress").value;
+    geocoder.geocode({ 'address': address }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            // alert("Latitude: " + latitude + "\nLongitude: " + longitude);
+			      document.getElementById('lat').value = latitude
+			      document.getElementById('lon').value = longitude
+        } else {
+            alert("Request failed.")
+          };
+    });
+
+};
+
+// Setup
+this.$('.js-loading-bar').modal({
+  backdrop: 'static',
+  show: false
+});
+
+$('#submit').click(function() {
+  var $modal = $('.js-loading-bar'),
+      $bar = $modal.find('.progress-bar');
+  
+  $modal.modal('show');
+  $bar.addClass('animate');
+
+  setTimeout(function() {
+    $bar.removeClass('animate');
+    $modal.modal('hide');
+  }, 4000);
+});
+ 
+
+
+</script>
+
+
+

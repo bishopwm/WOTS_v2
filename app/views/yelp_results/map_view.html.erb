@@ -1,0 +1,321 @@
+<link href='https://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Cabin:400,600' rel='stylesheet' type='text/css'>
+
+
+</div>
+	<div id="map"></div>
+
+</div>
+
+
+<div class="container">
+	<div class="row col-md-4">
+		<div class="first-panel panel panel-primary">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Step 1</h3>
+		  </div>
+		  <div class="panel-body">
+		    Sign up and explore the map to discover nearby events, photos, establishments, and more!
+		  </div>
+		</div>
+	</div>
+	<div class="row col-md-4">
+		<div class="second-panel panel panel-success">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Step 2</h3>
+		  </div>
+		  <div class="panel-body">
+		    Click on interesting listings and click "Save" to add them to your very own personal Community!
+		  </div>
+		</div>
+	</div>
+	<div class="row col-md-4">
+		<div class="third-panel panel panel-info">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Step 3</h3>
+		  </div>
+		  <div class="panel-body">
+		    Below: Sign in with Facebook to see even more events, browse recent tweets, and check out the Insta Gallery!
+		  </div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<!-- <form>
+  <div class="form-group">
+    <label for="new-search">Search My Current Location</label>
+    <input type="text" class="form-control" name="q" id="new-search" placeholder="Enter Nationality">
+    <input type="hidden" class="form-control" name="latitude" id="lat">
+    <input type="hidden" class="form-control" name="longitude" id="lon">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+  <a href="#facebook-div"><img src="/assets/downarrow.png" class="bounce pull-right" visibility="visible"></a>
+</form> -->
+
+
+
+<div class="socials-container">
+
+
+<div name="facebook-div"></div>
+<% if current_user %>
+		<button type="button" class="btn col-lg-12 btn-default" id="facebook-button"><img src="/assets/facebookf.png" class="facebookf-logo">Facebook Events</button>
+		<div class="ourmodal facebook modal fade" tabindex="-1">
+				  <div class="modal-dialog">
+				    <div class="modal-content" id="ourmodal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">CLOSE</span></button>
+				        <h3 class="modal-title">Facebook Events</h3>
+				      </div>
+					      <div class="modal-body1"> 
+								<div class="facebook-events">
+										<ul class="fb-events-list"><br /><br />
+											<% @facebook_events.each do |facebook_event| %>
+											<li class="facebook-list-item">
+												<%= facebook_event['name'] %>
+											</li>
+											<li class="facebook-list-item">
+												<%= facebook_event['id'] %>
+											</li><br />
+										<% end %>
+										</ul>
+								</div>
+					    </div>
+
+				    </div>
+				  </div>
+				</div>
+			</div>
+<% else %>
+		<button type="button" class="btn col-lg-12 btn-default" id="facebook-button"><img src="/assets/facebookf.png" class="facebookf-logo">Facebook Events</button>
+		<div class="ourmodal facebook modal fade" tabindex="-1">
+				  <div class="modal-dialog">
+				    <div class="modal-content" id="ourmodal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">CLOSE</span></button>
+				        <h3 class="modal-title">Facebook Events</h3>
+				      </div>
+					      <div class="modal-body1"> 
+								<div class="facebook-events" style="text-align: center; margin-top: 30px;">
+										<br />
+										<%= link_to "Sign-in with Facebook", new_user_session_path, style: "font-size: 24px;" %>
+								</div>
+					    </div>
+
+				    </div>
+				  </div>
+				</div>
+			</div>
+<% end %>
+		
+
+	<button type="button" class="btn col-lg-12 btn-default" id="twitter-button"><img src="/assets/twitterwhite.png" class="twitter-logo" data-toggle="collapse" data-target="#tweets-target" aria-expanded="false" aria-controls="collapseExample">Recent Tweets</button>
+	<div class="twittermodal twitter modal fade" tabindex="-1">
+			  <div class="modal-dialog">
+			    <div class="modal-content" id="twittermodal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">CLOSE</span></button>
+			        <h3 class="modal-title">Tweets</h3>
+			      </div>
+				      <div class="modal-body1"> 
+						<div class="tweets" id="tweets-target">
+							<ul class="tweets-list"><br />
+								<% @tweets.each do |tweet_hash| %>
+								<li class="twitter-list-item">
+									<img src="/assets/twitter.png" width="30px">
+									<%= tweet_hash[:tweet] %>
+								</li>
+								<hr />
+								<br />			
+								<% end %>
+							<ul>
+						</div>
+				    </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+
+
+
+
+	<button type="button" class="btn col-lg-12 btn-default" id="instagram-button"><img src="/assets/instagramwhite.png" class="instagram-logo" data-toggle="collapse" data-target="#instagram-target" aria-expanded="false" aria-controls="collapseExample">Nearby Instas</button>
+
+	<div class="container">
+		<ul class="row insta-gallery-list">
+			<% @instas.each do |insta| %>
+			<li li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 insta-gallery-list-item">
+				<img src="<%= insta['image']['url'] %>" class="insta-pic">
+			</li>
+				<% end %>
+		</ul>
+	</div>
+
+   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content" id="insta-content">
+          <div class="modal-body">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+</div>
+
+
+<script type="text/javascript">
+
+	$(function () {
+		$('#lat').val(localStorage.getItem('latitude'));
+		$('#lon').val(localStorage.getItem('longitude'));
+		
+		var map = L.map('map').setView([<%= @latitude %>, <%= @longitude %>], 16);
+		var currentLocation = [<%= @latitude %>, <%= @longitude %>];
+
+
+		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={access_token}', {
+		    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+		    maxZoom: 18,
+		    id: "<%= ENV['mapbox_id'] %>",
+		    access_token: "<%= ENV['mapbox_access_token'] %>"
+		}).addTo(map);	
+
+		map.scrollWheelZoom.disable();
+
+
+
+		var markersYelp = {}
+		var markersMeetup = {}
+		var markersInsta = {}
+
+
+		var currentLocationIcon = L.icon({
+		    iconUrl: '/assets/star.png',
+		    iconSize: [40, 50],
+		    iconAnchor: [22, 64],
+		    popupAnchor: [-3, -76]	
+		});
+		var currentLocationMarker = L.marker(currentLocation, {icon: currentLocationIcon}).addTo(map);
+		var currentLocationContent = '<h4>You Are Here</h4>'
+		currentLocationMarker.bindPopup(currentLocationContent);
+
+		var meetupIcon = L.icon({
+		    iconUrl: '/assets/Meetup_Logo.png',
+		    iconSize: [55, 40],
+		    iconAnchor: [22, 64],
+		    popupAnchor: [-3, -76]
+		});
+
+		var yelpIcon = L.icon({
+			iconUrl: '/assets/Yelp_Logo.png',
+			iconSize: [55, 40],
+		    iconAnchor: [22, 64],
+		    popupAnchor: [-3, -76]			
+		});
+		var instaIcon = L.icon({
+			iconUrl: '/assets/insta.png',
+			iconSize: [45, 30],
+		    iconAnchor: [22, 64],
+		    popupAnchor: [-3, -76]			
+		});
+
+
+		//Yelp Content
+		var popupContentsYelp = {}
+
+
+
+		<% @businesses.each_with_index do |business, index| %>
+			<% if current_user %>
+				popupContentsYelp["popup" + <%= index %>] = "<h3><%= escape_javascript business[:name].to_s %></h3><p><strong>Address: </strong><%=escape_javascript business[:address].to_s.gsub!(/\W/,' ') %></p><p><strong>Website </strong><br /><a href='<%= business[:url].to_s.html_safe %>' target='_blank'>Visit Business Page</a></p><p><strong>Rating </strong><br /><%=escape_javascript business[:rating].to_s %></p><p><strong>Distance from me: </strong><br /><%=escape_javascript business[:distance].to_s %><strong> meters</strong></p><p><form method='POST' action='/streetwords'><input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'><input type='hidden' value='<%= business[:name] %>' name='streetword[name]'><input type='hidden' value='<%= @search_term %>' name='streetword[search_term]'><input type='hidden' value='<%= business[:latitude] %>' name='streetword[latitude]' ><input type='hidden' value='<%= business[:longitude] %>' name='streetword[longitude]'><input type='hidden' value='<%= business[:address] %>' name='streetword[address]'><button type='submit' class='btn btn-default'>Save</button></form></p>"
+
+
+			<% else %>
+				popupContentsYelp["popup" + <%= index %>] = "<h3><%= escape_javascript business[:name].to_s %></h3><p><strong>Address: </strong><%=escape_javascript business[:address].to_s.gsub!(/\W/,' ') %></p><p><strong>Website </strong><br /><a href='<%= business[:url].to_s.html_safe %>' target='_blank'>Visit Business Page</a></p><p><strong>Rating </strong><br /><%=escape_javascript business[:rating].to_s %></p><p><strong>Distance from me: </strong><br /><%=escape_javascript business[:distance].to_s %><strong> meters</strong></p>"
+			<% end %>
+			markersYelp["marker" + <%= index %>] = L.marker(<%= business[:coordinates] %>, {icon: yelpIcon}).bindPopup(popupContentsYelp['popup' + <%= index %>]).addTo(map);
+		<% end %>
+
+
+	
+		//Meetup Content
+		var popupContentsMeetup = {}
+
+		<% @meetups.each_with_index do |meetup, index| %>
+			<% if current_user %>
+			popupContentsMeetup["popup" + <%= index %>] = "<h3><%=escape_javascript meetup['event'] %></h3><p><strong>Address: </strong><br /><%= escape_javascript meetup['address'] %></p><p><%= escape_javascript meetup['venue'] %></p><p><strong>Who is this for?</strong><br /><%= escape_javascript meetup['who'].to_s %></p><p><strong>Website </strong><br /><a href='<%= meetup['url'].to_s.html_safe %>' target='_blank'>Visit Event Page</a></p><p><form method='POST' action='/streetwords'><input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'><input type='hidden' value='<%= meetup['event'] %>' name='streetword[name]'><input type='hidden' value='<%= meetup['coordinates'][0] %>' name='streetword[latitude]' ><input type='hidden' value='<%= meetup['coordinates'][1] %>' name='streetword[longitude]'><input type='hidden' value='<%= meetup['address'] %>' name='streetword[address]'><button type='submit' class='btn btn-default'>Save</button></form></p>"
+			<% else %>
+				popupContentsMeetup["popup" + <%= index %>] = "<h3><%=escape_javascript meetup['event'] %></h3><p><strong>Address: </strong><br /><%= escape_javascript meetup['address'] %></p><p><%= escape_javascript meetup['venue'] %></p><p><strong>Who is this for?</strong><br /><%= escape_javascript meetup['who'].to_s %></p><p><strong>Website </strong><br /><a href='<%= meetup['url'].to_s.html_safe %>' target='_blank'>Visit Event Page</a></p>"
+			<% end %>
+			markersMeetup["marker" + <%= index %>] = L.marker(<%= meetup["coordinates"] %>, {icon: meetupIcon}).bindPopup(popupContentsMeetup['popup' + <%= index %>]).addTo(map);
+		<% end %>
+
+		//Insta Content
+		var popupContentsInsta = {}
+
+		<% @instas.each_with_index do |insta, index| %>
+			var popupString = "<p><img width='50px' src='<%=escape_javascript insta['image']['url']%>'class='instapopup'></p>"
+			<% if insta['hashtag'].length > 0 %>
+				popupString += "<p>Hashtags: <%=escape_javascript insta['hashtag'].to_s.gsub!(/\W/,' ') %></p>"
+			<% end %>
+			<% if insta['location_name'] %>
+				popupString += "<p>Location: <%=escape_javascript insta['location_name'] %></p>"
+			<% end %>
+			popupContentsInsta["popup" + <%= index %>] = popupString
+			markersInsta["marker" + <%= index %>] = L.marker(<%= insta["coordinates"] %>, {icon: instaIcon}).bindPopup(popupContentsInsta['popup' + <%= index %>], {minWidth: 100}).addTo(map);
+		<% end %>
+
+
+		$('#facebook-button').on('click', function(event){
+			event.preventDefault();
+			$('.ourmodal').modal();
+		});
+		$('#twitter-button').on('click', function(event){
+			event.preventDefault();
+			$('.twittermodal').modal();
+		});
+
+		$(function() {
+		  $('a[href*=#]:not([href=#])').click(function() {
+		    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+		      var target = $(this.hash);
+		      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+		      if (target.length) {
+		        $('html,body').animate({
+		          scrollTop: target.offset().top
+		        }, 1000);
+		        return false;
+		      }
+		    }
+		  });
+		});
+
+		$(function() {
+			$('.bounce').click(function(){
+			    $('.bounce').css('visibility','hidden');
+			});
+		});
+
+		$(document).ready(function(){
+		           $('.insta-gallery-list-item .insta-pic').on('click',function(){
+		                var src = $(this).attr('src');
+		                var img = '<img src="' + src + '" class="img-responsive"/>';
+		                $('#myModal').modal();
+		                $('#myModal').on('shown.bs.modal', function(){
+		                    $('#myModal .modal-body').html(img);
+		                });
+		                $('#myModal').on('hidden.bs.modal', function(){
+		                    $('#myModal .modal-body').html('');
+		                });
+		           });
+		        });
+
+			});
+
+
+</script>
